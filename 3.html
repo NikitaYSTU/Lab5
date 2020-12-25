@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Task3</title>
+</head>
+<body>
+    <input type="text" id="поле1" />
+    <button onclick="copy()">Копировать</button> <p></p>
+    <input type="text" id="поле2" />
+    <button onclick="clean()">Очистить</button>
+    <script>
+      function copy(){
+    let поле1 = document.getElementById("поле1");
+    let поле2 = document.getElementById("поле2");
+    if (поле1.value) {
+        поле2.value = поле1.value;
+    } else {
+        alert("Нужно что-то ввести")
+      }
+    }
+    function clean() {
+      document.getElementById("поле1").value = " ";
+      document.getElementById("поле2").value = " ";
+    }
+    </script>
+</body>
+</html>

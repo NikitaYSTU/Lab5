@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="ru">
+    <head>
+        <meta charset="utf-8" />
+        <title>Task5</title>
+        <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .calculator input, .calc-button {
+            font-family: Arial, serif;
+        }
+        body {
+            background: gray;
+            padding-bottom: 30px;
+            padding-top: 30px;
+        }
+        .calculator {
+            max-width: 400px;
+            margin: 0 auto;
+            border: 2px solid #111;
+            border-radius: 5px;
+        }
+        .calculator input {
+            background: none;
+            border: none;
+            box-shadow: none;
+            outline: none;
+            padding: 20px 10px;
+            width: 100%;
+            border-bottom: 2px solid #111;
+            color: black;
+            text-align: right;
+            font-size: 40px;
+            border-radius: 0;
+        }
+        .calc-button {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid #111;
+            padding: 20px;
+            color: #eee;
+            border-radius: 5px;
+            font-size: 22px;
+            cursor: pointer;
+        }
+        .calculator-buttons {
+            padding: 20px;
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr 1fr;
+            grid-gap: 15px;
+        }
+        .is-zero, .is-clear {
+            grid-column: span 3;
+        }
+        .is-clear {
+            background: #3572DB;
+        }
+        .is-equals {
+            background: #28D060;
+        }
+        </style>
+    </head>
+    <body>
+        <div class="calculator">
+            <input id="text" type="text" value="" readonly disabled>
+            <div class="calculator-buttons">
+                <button class="calc-button is-clear" onclick="Clear()">C</button>
+                <button class="calc-button" onclick="Enter('/')">/</button>
+                <button class="calc-button" onclick="Enter('7')">7</button>
+                <button class="calc-button" onclick="Enter('8')">8</button>
+                <button class="calc-button" onclick="Enter('9')">9</button>
+                <button class="calc-button" onclick="Enter('*')">*</button>
+                <button class="calc-button" onclick="Enter('4')">4</button>
+                <button class="calc-button" onclick="Enter('5')">5</button>
+                <button class="calc-button" onclick="Enter('6')">6</button>
+                <button class="calc-button" onclick="Enter('-')">-</button>
+                <button class="calc-button" onclick="Enter('1')">1</button>
+                <button class="calc-button" onclick="Enter('2')">2</button>
+                <button class="calc-button" onclick="Enter('3')">3</button>
+                <button class="calc-button" onclick="Enter('+')">+</button>
+                <button class="calc-button is-zero" onclick="Enter('0')">0</button>
+                <button class="calc-button is-equals" onclick="Equal()">=</button>
+            </div>
+        </div>
+        <script>
+            var a = 0, operation = 0;
+            var text = document.getElementById("text");
+            function Enter (n){
+                if ((n == "-" || n == "/" || n == "*" || n == "+") && (!operation)){
+                text.value = text.value + n;
+                a = n;
+                ++operation;
+                }
+                else{
+                   if (!(n == "-" || n == "/" || n == "*" || n == "+")){
+                    text.value = text.value + n;
+                    a = n;
+                   }
+               }
+            }
+            function Clear (){
+               text.value = "";
+               operation = 0;
+            }
+            function Equal (){
+            operation = 0;
+               if (a[1] == 0) text.value = "ERROR";
+               else {
+                   if (text.value[0] == 0 || text.value[0] == "/" || text.value[0] == "*" || text.value[0] == "+" || text.value[0] == "-")  
+                   text.value = "ERROR";
+                   else {
+                      text.value = eval(text.value);
+                   }
+               }
+           }
+        </script>
+    </body>
+</html>

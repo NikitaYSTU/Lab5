@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task7</title>
+    <meta charset="UTF-8">
+    <style>
+     * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+    td {
+        width: 40px;
+        height: 40px;
+        border: 2px solid black;
+        text-align: center;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 30px;
+    }
+    table {
+        margin: 10px;
+        border-collapse: collapse;
+    }
+    </style>
+</head>
+<body>
+    <table id="table1">
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td></td>
+            <td></td>
+        </tr>
+    </table>
+    Ход: O <br>
+    <button onclick="clr()">Очистить</button>
+    <script>
+        const win_states = [
+        [0, 1, 2], [3, 4, 5], [6, 7, 8], 
+        [0, 3, 6], [1, 4, 7], [2, 5, 8], 
+        [0, 4, 8], [2, 4, 6]
+        ]; 
+        let game_finished = false;
+        const cells = document.getElementById("table1").getElementsByTagName('td');
+    for (let i = 0; i<9; i++) {
+        cells[i].addEventListener("click", click(i));
+    }
+    function get(n) {
+        return cells[n].innerHTML;
+    }
+    function check() {
+        for (let s of win_states) {
+            let c = get(s[0])
+            if (c && c == get(s[1]) && c == get(s[2])) {
+                return true;
+            }
+        }
+        return false;
+    }
+    function free_cells() {
+        let res = [];
+        for (let cell of cells) {
+            if (cell.innerHTML == "") res.push(cell);
+        }
+        return res;
+    }
+    function pc_turn(fc) {
+        let pc_cell = Math.floor(Math.random()*fc.length);
+        fc[pc_cell].innerHTML = "X";
+    }
+    function click(n) {
+        function move() {
+            console.log('test');
+            if (game_finished) clr();
+            if (get(n) == "") cells[n].innerHTML = "O";
+            else return;
+            let fc = free_cells()
+            if (check()) {
+                game_finished = true;
+                alert("Победили нолики!")
+                return;
+            } else if (fc.length) {
+                pc_turn(fc);
+            } else {
+                game_finished = true;
+                alert("Ничья!");
+            }
+            if (check()) {
+                game_finished = true;
+                alert("Победили крестики!");
+            };
+        }
+        return move;
+    }
+    function clr() {
+        game_finished = false;
+        for (let cell of cells) {
+            cell.innerHTML = ""
+        }
+    }
+    </script>
+</body>
+</html>
