@@ -86,17 +86,17 @@
             let fc = free_cells()
             if (check()) {
                 game_finished = true;
-                setTimeout(() => alert("Победили нолики!"), 50 )
+                setTimeout(() => alert("Победили нолики!"))
                 return;
             } else if (fc.length) {
                 pc_turn(fc);
             } else {
                 game_finished = true;
-                settimeout(() => alert("Ничья!"), 50);
+                settimeout(() => alert("Ничья!") );
             }
             if (check()) {
                 game_finished = true;
-                settimeout(() => alert("Победили крестики!"), 50);
+                settimeout(() => alert("Победили крестики!") );
             };
         }
         return move;
