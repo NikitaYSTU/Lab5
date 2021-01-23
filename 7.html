@@ -92,11 +92,12 @@
                 pc_turn(fc);
             } else {
                 game_finished = true;
-                settimeout(() => alert("Ничья!") );
+                setTimeout(() => alert("Ничья!"));
+                return;
             }
             if (check()) {
                 game_finished = true;
-                settimeout(() => alert("Победили крестики!") );
+                setTimeout(() => alert("Победили крестики!") );
             };
         }
         return move;
